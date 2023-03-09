@@ -17,7 +17,7 @@ const establish = mysql.createConnection(
         database: 'GangGang_db'
     },
 );
-
+// Makes sure user inputs something
 function inputValidation(value) {
     if (value == "") {
         return "An input is required."
@@ -25,7 +25,7 @@ function inputValidation(value) {
         return true;
     }
 };
-// Initial Prompt that runs after 'npm start command'
+// Initial Prompt that runs after 'npm start' command
 function mainPrompt() {
     inquirer
         .prompt([
@@ -75,13 +75,12 @@ function promptChoice(choice) {
             addEmployee()
             break
         case "Update an Employee Role":
+            // Line 253
             updateEmployee()
             break
         case "Exit Application":
             console.log("You have closed Employee Manager")
             process.exit()
-            
-            break
     }
 }
 
@@ -128,7 +127,8 @@ function addDepartment() {
         .prompt({
             type: "input",
             message: "What's the name of the department you would like to add?",
-            name: "newDepartment"
+            name: "newDepartment",
+            validate: inputValidation
         })
         .then((data) => {
             const sql = 'INSERT INTO department (d_name) VALUES (?);'
@@ -201,12 +201,14 @@ function addEmployee() {
                             {
                                 type: "input",
                                 message: "What is the employee's first name?",
-                                name: "firstName"
+                                name: "firstName",
+                                validate: inputValidation
                             },
                             {
                                 type: "input",
                                 message: "What is the employee's last name?",
-                                name: "lastName"
+                                name: "lastName",
+                                validate: inputValidation
                             },
                             {
                                 type: "list",
@@ -230,7 +232,6 @@ function addEmployee() {
                                 for (let i = 0; i < rows.length; i++) {
                                     if (choiceFilter[0] == rows[i].first_name) {
                                         var manager = rows[i].id
-
                                     }
                                 }
                             }
@@ -243,6 +244,57 @@ function addEmployee() {
                             const newEmployee = [data.firstName, data.lastName, role, manager]
                             establish.promise().query(sql, newEmployee)
                                 .then(() => console.log(`Added ${data.firstName} ${data.lastName} to your employees`))
+                                .then(() => mainPrompt())
+                        })
+                })
+        })
+}
+// Pretty much the same functionality as addEmployee() *LINE 185* but replaces role for an employee via UPDATE sql query
+function updateEmployee() {
+    const sql = 'SELECT * FROM role;'
+    establish.promise().query(sql)
+        .then(([rows, fields]) => {
+            var roles = rows.map((roles) => {
+                return roles.title
+            })
+            var roleId = rows
+            const sql = 'SELECT * FROM employee;'
+            establish.promise().query(sql)
+                .then(([rows, fields]) => {
+                    var employees = rows.map((employee) => {
+                        return `${employee.first_name} ${employee.last_name}`
+                    })
+                    inquirer
+                        .prompt([
+                            {
+                                type: "list",
+                                message: "Who are we assigning a new role to?",
+                                name: "employee",
+                                choices: employees
+                            },
+                            {
+                                type: "list",
+                                message: "What will their new role be?",
+                                name: "updateRole",
+                                choices: roles
+                            }])
+                        .then((data) => {
+                            var employeeFilter = data.employee.split(" ")
+                            for (let i = 0; i < rows.length; i++) {
+                                if (employeeFilter[0] == rows[i].first_name) {
+                                    var employee = rows[i].id
+                                }
+                            }
+
+                            for (var i = 0; i < roleId.length; i++) {
+                                if (data.updateRole == roleId[i].title) {
+                                    var role = roleId[i].id
+                                }
+                            }
+                            const sql = 'UPDATE employee SET role_id=? WHERE id = ?'
+                            const roleUpdate = [role, employee]
+                            establish.promise().query(sql, roleUpdate)
+                                .then(() => console.log(`${data.employee} is now a ${data.updateRole}`))
                                 .then(() => mainPrompt())
                         })
                 })
