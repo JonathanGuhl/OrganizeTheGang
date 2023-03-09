@@ -12,8 +12,7 @@ INSERT INTO role (title, salary, department_id)
            ("Legal Team Lead", 250000, 3),
            ("Lawyer", 190000, 3),
            ("Sales Lead", 100000, 4),
-           ("Salesperson", 80000, 4),
-           ("Accountants", 129000, 2);
+           ("Salesperson", 80000, 4);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
     VALUES ("Olga", "Petit", 5, NULL),
