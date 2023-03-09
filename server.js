@@ -71,14 +71,16 @@ function promptChoice(choice) {
             addRole()
             break
         case "Add an Employee":
-
+            // Line 185
             addEmployee()
             break
         case "Update an Employee Role":
             updateEmployee()
             break
         case "Exit Application":
-            exitApp()
+            console.log("You have closed Employee Manager")
+            process.exit()
+            
             break
     }
 }
