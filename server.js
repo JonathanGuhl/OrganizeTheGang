@@ -51,24 +51,27 @@ function mainPrompt() {
 function promptChoice(choice) {
     switch (choice.mainPrompt){
         case "View All Departments":
-        // Line 83
+        // Line 88
             viewDepartments()
             break
         case "View All Roles":
-        // Line 94
+        // Line 98
             viewRoles()
             break
         case "View All Employees":
-        // Line 107
+        // Line 110
             viewEmployees()
             break
         case "Add a Department":
-            addDeparment()
+        // Line 124
+            addDepartment()
             break
         case "Add a Role":
+        // Line 140
             addRole()
             break
         case "Add an Employee":
+        
             addEmployee()
             break
         case "Update an Employee Role":
@@ -117,8 +120,8 @@ function viewEmployees() {
         .catch(console.log)
         .then(() => mainPrompt())
     }
-
-function addDeparment() {
+// User inputs name, name gets INSERTED INTO department
+function addDepartment() {
     inquirer
         .prompt({
             type: "input",
@@ -127,13 +130,55 @@ function addDeparment() {
         })
         .then((data) => {
             const sql = 'INSERT INTO department (d_name) VALUES (?);'
-            const value = [data.newDepartment];
-            establish.promise().query(sql, value)
-        .then(console.log(`Added ${value} to departments`))
+            const newDepartment = [data.newDepartment];
+            establish.promise().query(sql, newDepartment)
+        .then(console.log(`Added ${newDepartment} to departments`))
         .then(() => mainPrompt())
       })
     }
-
+// User inputs name for role, then selects departments its going to be in based off of id
+function addRole() {
+    const sql = 'SELECT * FROM department';
+        establish.promise().query(sql)
+        .then(([rows, fields]) => {
+            var departments = rows.map((department) => {
+                return department.d_name
+            })
+        inquirer
+             .prompt([
+                {
+                    type: "input",
+                    message: "What is the name of the role?",
+                    name: "newRole",
+                    validate: inputValidation
+                },
+                {
+                    type: "input",
+                    message: "What's the salary for the position?",
+                    name: "newSalary",
+                    validate: inputValidation
+                },
+                {
+                type: "list",
+                message: "What department would you like to add the role to?",
+                name: 'existingDepartments',
+                choices: departments
+                }
+            ])
+            .then((data) => {
+                for (var i = 0; i < rows.length; i++) {
+                    if (data.existingDepartments == rows[i].d_name) {
+                    var deptId = rows[i].id;
+                }
+            }
+            const sql = 'INSERT INTO role (title, salary, department_id) VALUES (?,?,?)'
+            const newRole = [data.newRole, data.newSalary, deptId];
+                establish.promise().query(sql, newRole)
+                .then(console.log(`Added ${data.newRole} to ${data.existingDepartments}`))
+                .then(() => mainPrompt());
+        })
+    });
+}    
 
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
