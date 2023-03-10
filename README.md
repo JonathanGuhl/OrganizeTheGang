@@ -15,7 +15,7 @@
 
 - Assuming you're in the correct directory at this point, now you will run `npm install` in the command line
 
--  So before you can run this youll need to create a database locally. So to do that, from the command line you will run    `mysql -u root -p`, after that you will run `source schema.sql` or `source mysql/schema.sql` depending on what directory of the repository you are in in the command line. 
+-  So before you can run this youll need to create a database locally. To do that, from the command line you will run `mysql -u root -p`, after that you will run `source schema.sql` or `source mysql/schema.sql` depending on what directory of the repository you are in in the command line. 
 
 - (OPTIONAL) If you would populate the database with a preset database after youve run the `source schema.sql` you can run `source seeds.sql` or `source mysql/schema.sql` depending on what directory of the repository you are in in the command line. 
 
