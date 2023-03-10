@@ -9,17 +9,17 @@
 
 ## Usage 
 
-- 1. Clone this repository 
+- Clone this repository 
 
-- 2. After you've cloned the repository, `cd` into the directory you cloned the repository into
+- After you've cloned the repository, `cd` into the directory you cloned the repository into
 
-- 3. Assuming you're in the correct directory at this point, now you will run `npm install` in the command line
+- Assuming you're in the correct directory at this point, now you will run `npm install` in the command line
 
-- 4. So before you can run this youll need to create a database locally. So to do that, from the command line you will run `mysql -u root -p`, after that you will run `source schema.sql` or `source mysql/schema.sql` depending on what directory of the repository you are in in the command line. 
+-  So before you can run this youll need to create a database locally. So to do that, from the command line you will run `mysql -u root -p`, after that you will run `source schema.sql` or `source mysql/schema.sql` depending on what directory of the repository you are in in the command line. 
 
-- 5. (OPTIONAL) If you would populate the database with a preset database after youve run the `source schema.sql` you can run `source seeds.sql` or `source mysql/schema.sql` depending on what directory of the repository you are in in the command line. 
+- (OPTIONAL) If you would populate the database with a preset database after youve run the `source schema.sql` you can run `source seeds.sql` or `source mysql/schema.sql` depending on what directory of the repository you are in in the command line. 
 
-- 6. After you've created the database and populated the preset information(or not) run `npm start` to start the application
+- After you've created the database and populated the preset information(or not) run `npm start` to start the application
 
 - Here's some examples of what you will see as you navigate the application 
 - ![My Image](Assets/menu.png)
