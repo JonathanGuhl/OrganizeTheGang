@@ -22,7 +22,10 @@
 - After you've created the database and populated the preset information(or not) run `npm start` to start the application
 
 - Here's an examples of what you will see as you navigate the application 
-https://user-images.githubusercontent.com/119094131/224232358-78ce24cc-1fde-495c-a575-98bcb04f18fb.mp4
+
+
+
+https://user-images.githubusercontent.com/119094131/224232783-161e880f-5500-49dc-858f-b44cfc2fa748.mp4
 
 
 
