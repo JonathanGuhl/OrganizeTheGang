@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "chalk": "^5.2.0",
+    "cli-color": "^2.0.3",
+    "cli-table3": "^0.6.3",
     "console-table-printer": "^2.11.1",
     "express": "^4.18.2",
     "inquirer": "^8.2.4",
