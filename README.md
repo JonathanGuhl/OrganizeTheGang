@@ -25,5 +25,10 @@
 - ![My Image](Assets/menu.png)
 - ![My Image](Assets/employees.png)
 
+
+https://user-images.githubusercontent.com/119094131/224232358-78ce24cc-1fde-495c-a575-98bcb04f18fb.mp4
+
+
+
 - From there feel free to play around and add whatver type of information you'd want to add to your own local database!
 
