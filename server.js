@@ -56,31 +56,31 @@ function promptChoice(choice) {
             viewDepartments()
             break
         case "View All Roles":
-            // Line 98
+            // Line 104
             viewRoles()
             break
         case "View All Employees":
-            // Line 110
+            // Line 116
             viewEmployees()
             break
         case "Add a Department":
-            // Line 124
+            // Line 130
             addDepartment()
             break
         case "Add a Role":
-            // Line 140
+            // Line 147
             addRole()
             break
         case "Add an Employee":
-            // Line 185
+            // Line 190
             addEmployee()
             break
         case "Update an Employee Role":
-            // Line 253
+            // Line 258
             updateEmployee()
             break
         case "Remove a Department":
-            // 
+            // Line 309
             removeDepartment()
             break
         case "Exit Application":
@@ -305,7 +305,7 @@ function updateEmployee() {
                 })
         })
 }
-
+// Allows user to remove department
 function removeDepartment() {
     const sql = 'SELECT * FROM department'
     establish.promise().query(sql)
