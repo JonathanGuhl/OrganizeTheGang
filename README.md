@@ -21,11 +21,7 @@
 
 - After you've created the database and populated the preset information(or not) run `npm start` to start the application
 
-- Here's some examples of what you will see as you navigate the application 
-- ![My Image](Assets/menu.png)
-- ![My Image](Assets/employees.png)
-
-
+- Here's an examples of what you will see as you navigate the application 
 https://user-images.githubusercontent.com/119094131/224232358-78ce24cc-1fde-495c-a575-98bcb04f18fb.mp4
 
 
