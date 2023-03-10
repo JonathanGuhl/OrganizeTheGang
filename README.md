@@ -22,8 +22,8 @@
 - 6. After you've created the database and populated the preset information(or not) run `npm start` to start the application
 
 - Here's some examples of what you will see as you navigate the application 
-![My Image](Assets/Screenshot 2023-03-09 at 10.41.14 PM.png)
-![My Image](Assets/Screenshot 2023-03-09 at 10.44.32 PM.png)
+- ![My Image](Assets/Screenshot 2023-03-09 at 10.41.14 PM.png)
+- ![My Image](Assets/Screenshot 2023-03-09 at 10.44.32 PM.png)
 
 - From there feel free to play around and add whatver type of information you'd want to add to your own local database!
 
