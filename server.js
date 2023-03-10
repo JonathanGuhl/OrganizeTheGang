@@ -41,6 +41,7 @@ function mainPrompt() {
                     "Add a Role",
                     "Add an Employee",
                     "Update an Employee Role",
+                    "Remove a Department",
                     "Exit Application"
                 ]
             }
@@ -77,6 +78,10 @@ function promptChoice(choice) {
         case "Update an Employee Role":
             // Line 253
             updateEmployee()
+            break
+        case "Remove a Department":
+            // 
+            removeDepartment()
             break
         case "Exit Application":
             console.log("You have closed Employee Manager")
@@ -299,6 +304,32 @@ function updateEmployee() {
                         })
                 })
         })
+}
+
+function removeDepartment() {
+    const sql = 'SELECT * FROM department'
+    establish.promise().query(sql)
+    .then(([rows, fields]) => {
+        var departments = rows.map((department) =>{
+            return department.d_name
+        })
+        inquirer
+            .prompt([
+                {
+                   type: "list",
+                   message: "What department are you wanting to remove?",
+                   name: "department",
+                   choices: departments 
+                }])
+                .then((data) => {
+                    const sql = 'DELETE FROM department WHERE d_name=?'
+                    const delDeparment = [data.department];
+                    establish.promise().query(sql, delDeparment)
+                    .then(() => console.log(`${data.department} has been deleted`))
+                    .then(() => mainPrompt())
+                })
+
+    })
 }
 
 app.listen(PORT, () =>
